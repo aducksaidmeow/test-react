@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import { collection, getDocs, query, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebaseConfig";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage"
-import 'react-day-picker/dist/style.css';
 
 export default function AddEventMenu({action, setAction, currentDay, currentMonth, currentYear}) {
 
