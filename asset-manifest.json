@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/test-react/static/css/main.b20c9da8.css",
-    "main.js": "/test-react/static/js/main.9baecaef.js",
+    "main.css": "/test-react/static/css/main.7c704ccc.css",
+    "main.js": "/test-react/static/js/main.043b8aa7.js",
     "static/js/787.cda612ba.chunk.js": "/test-react/static/js/787.cda612ba.chunk.js",
     "static/media/login-picture.png": "/test-react/static/media/login-picture.e6676e3fbcd021b1d556.png",
     "static/media/student.png": "/test-react/static/media/student.6c1ac38ef12a5ef67f2b.png",
@@ -11,12 +11,12 @@
     "static/media/Philosopher-Regular.otf": "/test-react/static/media/Philosopher-Regular.614532315eab8329cdab.otf",
     "static/media/Philosopher-Bold.otf": "/test-react/static/media/Philosopher-Bold.af6cfee3080bf63a5202.otf",
     "index.html": "/test-react/index.html",
-    "main.b20c9da8.css.map": "/test-react/static/css/main.b20c9da8.css.map",
-    "main.9baecaef.js.map": "/test-react/static/js/main.9baecaef.js.map",
+    "main.7c704ccc.css.map": "/test-react/static/css/main.7c704ccc.css.map",
+    "main.043b8aa7.js.map": "/test-react/static/js/main.043b8aa7.js.map",
     "787.cda612ba.chunk.js.map": "/test-react/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b20c9da8.css",
-    "static/js/main.9baecaef.js"
+    "static/css/main.7c704ccc.css",
+    "static/js/main.043b8aa7.js"
   ]
 }
