@@ -70,8 +70,8 @@ export default function Login() {
         <img src={loginPicture} alt=""/>
       </div> }
       <div className="col-start-1 col-span-3 row-start-2 row-span-3 flex flex-col justify-center items-center">
-        {!remove && <div className="text-[45px] font-bold font-Philosopher-Regular">
-            LỊCH NHẮC NHỞ HỌC TẬP
+        {!remove && <div className="text-[55px] font-bold font-Philosopher-Regular">
+            Homework Reminder
         </div> } 
         {/*{!remove && <div>
           <button className="
