@@ -1,3 +1,5 @@
+import displayGroup from "./display-group.png"
+
 export default function DisplayGroupButton({ action, setAction }) {
 
   const onClick = () => {
@@ -11,10 +13,10 @@ export default function DisplayGroupButton({ action, setAction }) {
 
   return (
     <button 
-      className="h-[100%] w-[15%] bg-white rounded-lg"
+      className="h-[100%] w-[15%] bg-white rounded-lg flex justify-center items-center"
       onClick={() => onClick()}
     >
-
+      <img src={displayGroup} alt="" className="h-[80%] aspect-square"/>
     </button>
   );
 }

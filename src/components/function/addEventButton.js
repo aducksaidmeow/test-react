@@ -1,3 +1,5 @@
+import addEvent from "./add-event.png"
+
 export default function AddEventButton({ action, setAction }) {
 
   const onClick = () => {
@@ -11,10 +13,10 @@ export default function AddEventButton({ action, setAction }) {
 
   return (
     <button 
-      className="h-[100%] w-[15%] bg-white rounded-lg"
+      className="h-[100%] w-[15%] bg-white rounded-lg flex justify-center items-center"
       onClick={() => onClick()}
     >
-
+      <img src={addEvent} alt="" className="h-[80%] aspect-square"/>
     </button>
   );
 }

@@ -86,7 +86,7 @@ export default function TeacherMain() {
           currentMonth={currentMonth} setCurrentMonth={setCurrentMonth}
           currentYear={currentYear} setCurrentYear={setCurrentYear}
         />
-        <div className="h-[10%] w-[100%] bg-black mt-[5%] flex gap-[5%]">        
+        <div className="h-[10%] w-[100%] mt-[5%] flex gap-[5%]">        
           <AddEventButton action={action} setAction={setAction} />
           <AddGroupButton action={action} setAction={setAction} />
           <DisplayGroupButton action={action} setAction={setAction} />
