@@ -9,6 +9,7 @@ import AddGroupButton from './function/addGroupButton';
 import AddGroupMenu from './function/addGroupMenu';
 import DisplayGroupButton from './function/displayGroupButton';
 import DisplayGroupMenu from './function/displayGroupMenu';
+import Notification from './function/notification';
 import "./react-calendar.css"
 
 export default function TeacherMain() {
@@ -24,6 +25,7 @@ export default function TeacherMain() {
     addGroup: false,
     displayGroup: false,
   })
+  const [errorCode, setErrorCode] = useState("");
 
   const [currentDay, setCurrentDay] = useState((new Date()).getDate());
   const [currentMonth, setCurrentMonth] = useState((new Date()).getMonth() + 1);
@@ -66,6 +68,15 @@ export default function TeacherMain() {
     setDisplayContent((displayContent) => {
       return {...displayContent, open: Array(displayContent.initial.length).fill(false)};
     })
+    setDisplayContent((displayContent) => {
+      const newDisplayContent = {...displayContent};
+      newDisplayContent.initial.sort((a, b) => {
+        if (a.year === b.year && a.month === b.month) return a.day < b.day ? -1 : 1;
+        else if (a.year === b.year) return a.month < b.month ? -1 : 1;
+        else return a.year < b.year ? -1 : 1;
+      })
+      return newDisplayContent;
+    })
     //setEventLoading(false);
   }
 
@@ -75,6 +86,7 @@ export default function TeacherMain() {
 
   return (
     <div className="h-screen grid grid-cols-3 bg-gradient-to-l from-indigo-200 via-red-200 to-yellow-100 overflow-y-auto overflow-x-auto scrollbar-hide relative">
+      <Notification errorCode={errorCode} setErrorCode={setErrorCode} />
       <div className="col-start-1 col-span-2 flex justify-center items-center">
         <RenderContent displayContent={displayContent} setDisplayContent={setDisplayContent} />
       </div>
@@ -92,9 +104,18 @@ export default function TeacherMain() {
           <DisplayGroupButton action={action} setAction={setAction} />
         </div>
       </div>
-      <AddEventMenu action={action} setAction={setAction} currentDay={currentDay} currentMonth={currentMonth} currentYear={currentYear} />
-      <AddGroupMenu action={action} setAction={setAction} />
-      <DisplayGroupMenu action={action} setAction={setAction} />
+      <AddEventMenu 
+        action={action} setAction={setAction} 
+        errorCode={errorCode} setErrorCode={setErrorCode}
+        currentDay={currentDay} currentMonth={currentMonth} currentYear={currentYear} 
+      />
+      <AddGroupMenu 
+        action={action} setAction={setAction} 
+        errorCode={errorCode} setErrorCode={setErrorCode}
+      />
+      <DisplayGroupMenu 
+        action={action} setAction={setAction} 
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { collection, getDocs, query, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebaseConfig";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage"
 
-export default function AddEventMenu({action, setAction, currentDay, currentMonth, currentYear}) {
+export default function AddEventMenu({action, setAction, errorCode, setErrorCode, currentDay, currentMonth, currentYear}) {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -25,13 +25,17 @@ export default function AddEventMenu({action, setAction, currentDay, currentMont
   const refMenu = useRef(null);
   const refGroup = useRef(null);
 
+  const resetAction = () => {
+    setAction((action) => {
+      const newAction = {...action};
+      for (const action in newAction) newAction[action] = false;
+      return newAction;
+    })
+  }
+
   const handleClickOutsideMenu = (event) => {
     if (refMenu.current && !refMenu.current.contains(event.target)) {
-      setAction((action) => {
-        const newAction = {...action};
-        for (const action in newAction) newAction[action] = false;
-        return newAction;
-      })
+      resetAction();
     }
   }
   const handleClickOutsideGroup = (event) => {
@@ -70,6 +74,21 @@ export default function AddEventMenu({action, setAction, currentDay, currentMont
   }
 
   const onSubmit = async() => {
+    if (title === "") {
+      setErrorCode("Title missing");
+      //resetAction();
+      return;
+    }
+    if (description === "") {
+      setErrorCode("Description missing");
+      //resetAction();
+      return;
+    }
+    if (groupIndex === -1) {
+      setErrorCode("Group missing");
+      //resetAction();
+      return;
+    }
     const email = localStorage.getItem("email");
     var URL = "";
     if (file !== null) {
@@ -85,6 +104,8 @@ export default function AddEventMenu({action, setAction, currentDay, currentMont
       return await addDoc(collection(db, email + '/info/events'), { title, description, day, month, year, URL, fileName, groupName });
     })
     await Promise.all(promise).catch((error) => console.log(error.message));
+    setErrorCode("Success");
+    resetAction();
   }
 
   return (

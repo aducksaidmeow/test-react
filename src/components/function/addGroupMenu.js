@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"
 import { db } from "../../firebaseConfig";
 
-export default function AddGroupMenu({ action, setAction }) {
+export default function AddGroupMenu({ action, setAction, errorCode, setErrorCode }) {
 
   const [groupName, setGroupName] = useState("")
   const [groupMember, setGroupMember] = useState([{ email: "", name: "" }])
@@ -11,13 +11,17 @@ export default function AddGroupMenu({ action, setAction }) {
 
   const refMenu = useRef(null);
 
+  const resetAction = () => {
+    setAction((action) => {
+      const newAction = {...action};
+      for (const action in newAction) newAction[action] = false;
+      return newAction;
+    })
+  }
+
   const handleClickOutsideMenu = (event) => {
     if (refMenu.current && !refMenu.current.contains(event.target)) {
-      setAction((action) => {
-        const newAction = {...action};
-        for (const action in newAction) newAction[action] = false;
-        return newAction;
-      })
+      resetAction();
     }
   }
 
@@ -66,8 +70,33 @@ export default function AddGroupMenu({ action, setAction }) {
   }
 
   const onSubmit = async() => {
+    if (groupName === "") {
+      setErrorCode("Missing group name");
+      //resetAction();
+      return;
+    }
+    var missing = 0;
+    groupMember.forEach((value) => {
+      if (value.name === "") {
+        missing = 1;
+      } else if (value.email === "") {
+        missing = 2;
+      }
+    })
+    if (missing === 1) {
+      setErrorCode("Missing member name");
+      //resetAction();
+      return;
+    }
+    if (missing === 2) {
+      setErrorCode("Missing member email");
+      //resetAction();
+      return;
+    }
     const email = localStorage.getItem("email");
     await setDoc(doc(db, email + '/info/groups/' + groupName), {groupMember, groupName}).catch((error) => console.log(error));
+    setErrorCode("Success");
+    resetAction();
   }
 
   return (
