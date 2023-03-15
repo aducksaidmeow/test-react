@@ -5,6 +5,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/login";
 import AddInfo from './components/addInfo';
 import TeacherMain from './components/teacherMain';
+import StudentMain from './components/studentMain';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,6 +15,7 @@ root.render(
       <Route path="/" element={ <Login /> } />
       <Route path="/add-info" element={ <AddInfo /> } />
       <Route path="/teacher-calendar" element={ <TeacherMain /> } />
+      <Route path="/student-calendar" element={ <StudentMain /> } />
     </Routes>
   </HashRouter>
 );

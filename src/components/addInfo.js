@@ -18,6 +18,7 @@ export default function AddInfo() {
     await setDoc(doc(db, email + '/info'), { role }, { merge: true }).catch((error) => console.log(error));
     setLoading(false);
     if (role === "teacher") navigate("/teacher-calendar");
+    else if (role === "student") navigate("/student-calendar")
   }
 
   return (
