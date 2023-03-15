@@ -7,6 +7,8 @@ import AddEventButton from './function/addEventButton';
 import AddEventMenu from './function/addEventMenu';
 import AddGroupButton from './function/addGroupButton';
 import AddGroupMenu from './function/addGroupMenu';
+import DisplayGroupButton from './function/displayGroupButton';
+import DisplayGroupMenu from './function/displayGroupMenu';
 import "./react-calendar.css"
 
 export default function TeacherMain() {
@@ -20,6 +22,7 @@ export default function TeacherMain() {
   const [action, setAction] = useState({
     addEvent: false,
     addGroup: false,
+    displayGroup: false,
   })
 
   const [currentDay, setCurrentDay] = useState((new Date()).getDate());
@@ -86,10 +89,12 @@ export default function TeacherMain() {
         <div className="h-[10%] w-[100%] bg-black mt-[5%] flex gap-[5%]">        
           <AddEventButton action={action} setAction={setAction} />
           <AddGroupButton action={action} setAction={setAction} />
+          <DisplayGroupButton action={action} setAction={setAction} />
         </div>
       </div>
       <AddEventMenu action={action} setAction={setAction} currentDay={currentDay} currentMonth={currentMonth} currentYear={currentYear} />
       <AddGroupMenu action={action} setAction={setAction} />
+      <DisplayGroupMenu action={action} setAction={setAction} />
     </div>
   );
 }
