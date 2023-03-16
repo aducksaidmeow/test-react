@@ -55,6 +55,15 @@ export default function StudentMain() {
     setDisplayContent((displayContent) => {
       return {...displayContent, open: Array(displayContent.initial.length).fill(false)};
     })
+    setDisplayContent((displayContent) => {
+      const newDisplayContent = {...displayContent};
+      newDisplayContent.initial.sort((a, b) => {
+        if (a.year === b.year && a.month === b.month) return a.day < b.day ? -1 : 1;
+        else if (a.year === b.year) return a.month < b.month ? -1 : 1;
+        else return a.year < b.year ? -1 : 1;
+      })
+      return newDisplayContent;
+    })
     //setEventLoading(false);
   }
 
