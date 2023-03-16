@@ -3,6 +3,7 @@ import { db } from "../firebaseConfig"
 import { getDocs, collection, query, where } from "firebase/firestore"
 import RenderContent from './function/renderContent';
 import UserCalendar from './function/userCalendar';
+import ResetDisplayContentButton from './function/resetDisplayContentButton';
 import "./react-calendar.css"
 
 export default function StudentMain() {
@@ -84,6 +85,9 @@ export default function StudentMain() {
           currentMonth={currentMonth} setCurrentMonth={setCurrentMonth}
           currentYear={currentYear} setCurrentYear={setCurrentYear}
         />
+        <div className="h-[10%] w-[100%] mt-[5%] flex gap-[5%]">        
+          <ResetDisplayContentButton displayContent={displayContent} setDisplayContent={setDisplayContent} />
+        </div>
       </div>
     </div>
   );

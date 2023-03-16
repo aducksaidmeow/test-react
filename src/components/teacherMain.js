@@ -9,6 +9,7 @@ import AddGroupButton from './function/addGroupButton';
 import AddGroupMenu from './function/addGroupMenu';
 import DisplayGroupButton from './function/displayGroupButton';
 import DisplayGroupMenu from './function/displayGroupMenu';
+import ResetDisplayContentButton from './function/resetDisplayContentButton';
 import Notification from './function/notification';
 import "./react-calendar.css"
 
@@ -102,6 +103,7 @@ export default function TeacherMain() {
           <AddEventButton action={action} setAction={setAction} />
           <AddGroupButton action={action} setAction={setAction} />
           <DisplayGroupButton action={action} setAction={setAction} />
+          <ResetDisplayContentButton displayContent={displayContent} setDisplayContent={setDisplayContent} />
         </div>
       </div>
       <AddEventMenu 
