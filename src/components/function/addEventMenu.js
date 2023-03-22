@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { collection, getDocs, query, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebaseConfig";
-import { uploadBytes, ref, getDownloadURL } from "firebase/storage"
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { motion } from "framer-motion";
 
 export default function AddEventMenu({action, setAction, errorCode, setErrorCode, currentDay, currentMonth, currentYear}) {
 
@@ -112,7 +113,18 @@ export default function AddEventMenu({action, setAction, errorCode, setErrorCode
     <>
       {action.addEvent && 
         <div className="absolute h-[100%] w-[100%] bg-black/50 flex justify-center items-center">
-          <div ref={refMenu} className="h-[60%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl">
+          <motion.div 
+            ref={refMenu} 
+            className="h-[60%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+          >
             <form className="h-[100%] w-[100%] flex justify-center items-center gap-[2.5%]">
               <div className="w-[45%] h-[90%] flex flex-col justify-start items-center gap-[5%] pt-[5%]">
                 <input 
@@ -157,7 +169,7 @@ export default function AddEventMenu({action, setAction, errorCode, setErrorCode
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       }
     </>

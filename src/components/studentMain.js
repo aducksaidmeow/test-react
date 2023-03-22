@@ -54,7 +54,7 @@ export default function StudentMain() {
       }
     })
     setDisplayContent((displayContent) => {
-      return {...displayContent, open: Array(displayContent.initial.length).fill(false)};
+      return {...displayContent, open: Array(displayContent.initial.length).fill(false), id: Array(displayContent.initial.length).fill(Math.random())};
     })
     setDisplayContent((displayContent) => {
       const newDisplayContent = {...displayContent};

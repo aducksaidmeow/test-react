@@ -1,4 +1,5 @@
 import Calendar from 'react-calendar';
+import { motion } from 'framer-motion';
 
 export default function UserCalendar({ eventList, displayContent, setDisplayContent, currentDay, setCurrentDay, currentMonth, setCurrentMonth, currentYear, setCurrentYear}) {
 
@@ -39,23 +40,33 @@ export default function UserCalendar({ eventList, displayContent, setDisplayCont
     })
     if (eventList[day].length) {
       setDisplayContent((displayContent) => {
-        return {...displayContent, open: Array(displayContent.next.length).fill(false)}
+        return {...displayContent, open: Array(displayContent.next.length).fill(false), id: Array(displayContent.next.length).fill(Math.random())}
       }) 
     } else {
       setDisplayContent((displayContent) => {
-        return {...displayContent, open: Array(displayContent.initial.length).fill(false)}
+        return {...displayContent, open: Array(displayContent.initial.length).fill(false), id: Array(displayContent.initial.length).fill(Math.random())}
       })
     }
   }
 
   return (
-    <div className="drop-shadow-xl mt-[10vh]">
+    <motion.div 
+      className="drop-shadow-xl mt-[10vh]"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{
+        duration: 1.5,
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }}
+    >
       <Calendar 
         onActiveStartDateChange={ ({ action, activeStartDate, value, view}) => onChange(action) }
         tileContent={ ({date}) => tileContent(date) }
         onClickDay={ (date, event) => onClickDay(date, event) }
         minDetail="month"
       />
-    </div>
+    </motion.div>
   );
 }

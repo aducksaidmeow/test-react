@@ -19,7 +19,8 @@ export default function TeacherMain() {
   const [displayContent, setDisplayContent] = useState({
     initial: [],
     next: [],
-    open: []
+    open: [],
+    id: [],
   })
   const [action, setAction] = useState({
     addEvent: false,
@@ -67,7 +68,7 @@ export default function TeacherMain() {
       }
     })
     setDisplayContent((displayContent) => {
-      return {...displayContent, open: Array(displayContent.initial.length).fill(false)};
+      return {...displayContent, open: Array(displayContent.initial.length).fill(false), id: Array(displayContent.initial.length).fill(Math.random())};
     })
     setDisplayContent((displayContent) => {
       const newDisplayContent = {...displayContent};

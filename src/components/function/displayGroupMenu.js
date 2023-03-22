@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { collection, getDocs, query, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebaseConfig";
+import { motion } from "framer-motion";
 
 export default function DisplayGroupMenu({ action, setAction }) {
 
@@ -46,7 +47,18 @@ export default function DisplayGroupMenu({ action, setAction }) {
     <>
       {action.displayGroup && 
         <div className="absolute h-[100%] w-[100%] bg-black/50 flex justify-center items-center">
-          <div ref={refMenu} className="h-[70%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl grid grid-cols-2">
+          <motion.div 
+            ref={refMenu} 
+            className="h-[70%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl grid grid-cols-2"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+          >
             <div className="h-[100%] w-[100%] flex flex-col justify-start items-center overflow-auto scrollbar-hide gap-[2.5%] pt-[2.5%]">
               {group.map((value, index) => {
                 return (
@@ -74,7 +86,7 @@ export default function DisplayGroupMenu({ action, setAction }) {
                 })}
               </div>
             }
-          </div>
+          </motion.div>
         </div>
       }
     </>

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"
 import { db } from "../../firebaseConfig";
+import { motion } from "framer-motion";
 
 export default function AddGroupMenu({ action, setAction, errorCode, setErrorCode }) {
 
@@ -103,7 +104,18 @@ export default function AddGroupMenu({ action, setAction, errorCode, setErrorCod
     <>
       {action.addGroup && 
         <div className="absolute h-[100%] w-[100%] bg-black/50 flex justify-center items-center">
-          <div ref={refMenu} className="h-[70%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl">
+          <motion.div  
+            ref={refMenu} 
+            className="h-[70%] w-[60%] bg-white/100 rounded-lg drop-shadow-2xl"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+          >
             <form className="h-[100%] w-[100%] flex flex-col justify-start items-center gap-[2.5%] pt-[2.5%] overflow-auto scrollbar-hide">
               <input 
                 placeholder=" Group name" 
@@ -151,7 +163,7 @@ export default function AddGroupMenu({ action, setAction, errorCode, setErrorCod
                 onClick={() => onSubmit()}
               >Submit</button>
             </form>
-          </div>
+          </motion.div>
         </div>
       }
     </>

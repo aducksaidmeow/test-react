@@ -5,6 +5,7 @@ import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
 import { db } from '../firebaseConfig';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Login() {
 
@@ -45,9 +46,10 @@ export default function Login() {
 
     await setDoc(doc(db, email + '/info'), { uid }, { merge: true }).catch((error) => console.log(error));
 
-    navigate("/add-info")
+    //navigate("/add-info")
 
     setLoading(false);
+    setRemove(true);
   }
 
   return(
@@ -66,48 +68,111 @@ export default function Login() {
           </div>
         </div>
       }
-      {!remove && <div className="col-start-4 col-span-3 row-start-2 row-span-5 flex items-end">
-        <img src={loginPicture} alt=""/>
-      </div> }
+      <AnimatePresence>
+      {!remove && 
+        <motion.div 
+          className="col-start-4 col-span-3 row-start-2 row-span-5 flex items-end"
+          key="image"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            duration: 1.5,
+            type: "spring",
+            stiffness: 260,
+            damping: 20
+          }}
+          exit={{ scale: 0 }}
+        >
+          <img src={loginPicture} alt="" />
+        </motion.div> 
+      }
+      </AnimatePresence>
+
       <div className="col-start-1 col-span-3 row-start-2 row-span-3 flex flex-col justify-center items-center">
-        {!remove && <div className="text-[55px] font-bold font-Philosopher-Regular">
-            Homework Reminder
-        </div> } 
-        {/*{!remove && <div>
-          <button className="
-            h-[10vh] w-[24vw] bg-[#FFFBE9] border-[#FB2576] border-2 shadow-xl flex justify-center items-center mt-[5vh]
-            font-['consolas'] text-[20px] text-[#FB2576]
-            hover:bg-[#EA047E] hover:text-[#FFFBE9] hover:scale-[1.05] hover:text-[20px]
-            transition ease-in-out duration-150"
-            //onClick={() => loginCall()}
+      <AnimatePresence>
+        {!remove && 
+          <motion.div 
+            key="title"
+            className="text-[55px] font-bold font-Philosopher-Regular"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 1.5,
+              delay: 1.5,
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+            exit={{ scale: 0 }}
           >
-            Đăng nhập bằng Google 🔎  
-          </button>
-        </div> }*/}
+            Homework Reminder
+          </motion.div> 
+        } 
+        </AnimatePresence>
         <form 
           className="h-[35vh] w-[30vw] flex justify-center flex-col gap-[2.5vh]"
           onSubmit={(e) => onSubmit(e)}
         >
-     
-          <input 
-            type="text" 
-            placeholder="Email"
-            className="shadow appearance-none border rounded w-full h-[7.5vh] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            onChange={(e) => setState(e.target.value, setEmail)}
-          />
+          <AnimatePresence onExitComplete={() => navigate("/add-info")}>
+          {!remove && 
+            <motion.input 
+              key="email"
+              type="text" 
+              placeholder="Email"
+              className="shadow appearance-none border rounded w-full h-[7.5vh] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) => setState(e.target.value, setEmail)}
+              initial={{ y: 1000 }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: 1.5,
+                delay: 2,
+                type: "spring",
+                stiffness: 260,
+                damping: 50,
+              }}
+              exit={{ y: -1000 }}
+            /> 
+          }
           
-          <input 
-            type="text" 
-            placeholder="Password"
-            className="shadow appearance-none border rounded w-full h-[7.5vh] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            onChange={(e) => setState(e.target.value, setPassword)}
-          />
+          {!remove && 
+            <motion.input 
+              key="password"
+              type="text" 
+              placeholder="Password"
+              className="shadow appearance-none border rounded w-full h-[7.5vh] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) => setState(e.target.value, setPassword)}
+              initial={{ y: 1000 }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: 1.5,
+                delay: 2.25,
+                type: "spring",
+                stiffness: 260,
+                damping: 50,
+              }}
+              exit={{ y: -1000 }}
+            /> 
+          }
 
-          <input 
-            type="submit" 
-            className="bg-[#BE6DB7] hover:bg-[#E384FF] h-[7.5vh] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-          />
-
+          {!remove && 
+            <motion.input 
+              key="submit"
+              type="submit" 
+              className="bg-[#BE6DB7] hover:bg-[#E384FF] h-[7.5vh] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+              onChange={(e) => setState(e.target.value, setPassword)}
+              initial={{ y: 1000 }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: 1.5,
+                delay: 2.5,
+                type: "spring",
+                stiffness: 260,
+                damping: 50,
+              }}
+              exit={{ y: -1000 }}
+            /> 
+          }
+          </AnimatePresence>
         </form>
       </div>
     </div>

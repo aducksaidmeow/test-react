@@ -1,4 +1,5 @@
 import ReturnArrow from "./return-arrow.png";
+import { motion } from "framer-motion";
 
 export default function ResetDisplayContentButton({ displayContent, setDisplayContent }) {
 
@@ -14,12 +15,18 @@ export default function ResetDisplayContentButton({ displayContent, setDisplayCo
   return (
     <>
       {displayContent.next.length > 0 &&   
-        <button 
+        <motion.button 
           className="h-[100%] w-[15%] bg-white rounded-lg flex justify-center items-center"
           onClick={() => onClick()}
+          whileHover={{
+            scale: 1.1,
+            transition: {
+              duration: 0.5,
+            }
+          }}
         >
           <img src={ReturnArrow} alt="" className="h-[80%] aspect-square" />
-        </button>
+        </motion.button>
       }
     </>
   );

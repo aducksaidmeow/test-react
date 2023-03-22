@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Notification({ errorCode, setErrorCode }) {
 
   const color = () => {
@@ -8,12 +10,20 @@ export default function Notification({ errorCode, setErrorCode }) {
   return (
     <div className="absolute w-screen h-[7.5%] flex justify-center items-center z-10">
       {errorCode !== "" && 
-        <div 
+        <motion.div 
           className={`${color()} h-[70%] w-[40%] flex justify-center items-center rounded-lg`}
           onClick={() => setErrorCode("")}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            duration: 1.5,
+            type: "spring",
+            stiffness: 260,
+            damping: 20
+          }}
         >
           {errorCode}
-        </div>
+        </motion.div>
       }
     </div>
   );
