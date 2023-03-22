@@ -81,7 +81,16 @@ export default function Login() {
             stiffness: 260,
             damping: 20
           }}
-          exit={{ scale: 0 }}
+          exit={{ 
+            scale: 0,
+            transition: {
+              duration: 1.5,
+              type: "spring",
+              stiffness: 260,
+              damping: 40,
+              delay: 1,
+            }
+          }}
         >
           <img src={loginPicture} alt="" />
         </motion.div> 
@@ -93,7 +102,8 @@ export default function Login() {
         {!remove && 
           <motion.div 
             key="title"
-            className="text-[55px] font-bold font-Philosopher-Regular"
+            className="text-[55px] font-bold font-Philosopher-Regular 
+            bg-gradient-to-r from-[#7CC2A0] via-[#E16F7C] via-[#DD5E98] via-[#CC4BC2] to-[#6C3A5C] bg-clip-text text-transparent"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{
@@ -103,7 +113,16 @@ export default function Login() {
               stiffness: 260,
               damping: 20
             }}
-            exit={{ scale: 0 }}
+            exit={{ 
+              scale: 0,
+              transition: {
+                duration: 1.5,
+                type: "spring",
+                stiffness: 260,
+                damping: 40,
+                delay: 1,
+              }
+            }}
           >
             Homework Reminder
           </motion.div> 
@@ -130,7 +149,17 @@ export default function Login() {
                 stiffness: 260,
                 damping: 50,
               }}
-              exit={{ y: -1000 }}
+              exit={{ 
+                //scale: 0,
+                y: 1000,
+                transition: {
+                  duration: 1.5,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 100,
+                  delay: 0.5,
+                }
+              }}
             /> 
           }
           
@@ -150,7 +179,17 @@ export default function Login() {
                 stiffness: 260,
                 damping: 50,
               }}
-              exit={{ y: -1000 }}
+              exit={{ 
+                y: 1000,
+                //scale: 0,
+                transition: {
+                  duration: 1.5,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 100,
+                  delay: 0.25,
+                }
+              }}
             /> 
           }
 
@@ -169,7 +208,17 @@ export default function Login() {
                 stiffness: 260,
                 damping: 50,
               }}
-              exit={{ y: -1000 }}
+              exit={{ 
+                y: 1000,
+                transition: {
+                  duration: 1.5,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 100,
+                  delay: 0,
+                  //delay: 2,
+                }
+              }}
             /> 
           }
           </AnimatePresence>

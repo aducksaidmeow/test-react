@@ -42,7 +42,16 @@ export default function AddInfo() {
               stiffness: 260,
               damping: 20
             }}
-            exit={{ scale: 0 }}
+            exit={{ 
+              scale: 0,
+              transition: {
+                duration: 1.5,
+                delay: 0,
+                type: "spring",
+                stiffness: 260,
+                damping: 40
+              }
+            }}
           >
             <img src={student} className="h-[30vh]" alt=""/>
             <div className="flex justify-start items-center mt-[2.5vh] font-['consolas'] font-bold text-[25px]">
@@ -67,7 +76,16 @@ export default function AddInfo() {
               stiffness: 260,
               damping: 20
             }}
-            exit={{ scale: 0 }}
+            exit={{ 
+              scale: 0,
+              transition: {
+                duration: 1.5,
+                delay: 0,
+                type: "spring",
+                stiffness: 260,
+                damping: 40,
+              }
+            }}
           >
             <img src={teacher} className="h-[30vh]" alt=""/>
             <div className="flex justify-start items-center mt-[2.5vh] font-['consolas'] font-bold text-[25px]">
