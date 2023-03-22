@@ -78,7 +78,7 @@ export default function DisplayGroupMenu({ action, setAction }) {
                   return (
                     <div 
                       key={index}
-                      className="h-[12.5%] w-[95%] bg-[#D27685] border-4 border-[#9E4784] rounded-md shrink-0"
+                      className="h-[12.5%] w-[95%] bg-[#D27685] border-4 border-[#9E4784] rounded-md shrink-0 flex justify-center items-center"
                     >
                       {value.name}-{value.email}
                     </div>
